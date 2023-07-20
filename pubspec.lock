@@ -53,10 +53,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "2644a9e0965a7aa3deb09cb8ce4081db4450c178f472818c8cd34216a3070d7b"
+      sha256: "3866d67f93523161b643187af65f5ac08bc991a5bcdaf41a2d587fe4ccb49993"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.2"
+    version: "5.3.0"
   fake_async:
     dependency: transitive
     description:
@@ -86,6 +86,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:

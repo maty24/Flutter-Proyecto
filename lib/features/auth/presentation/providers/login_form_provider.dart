@@ -45,8 +45,14 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
     //si el state de is valid no hace nada
     if (!state.isValid) return;
 
+    //cambio el state para que apreto el boton login
+    state = state.copyWith(isPosting: true);
+
     //le envio los parametros de la funcion
     await loginUserCallback(state.email.value, state.password.value);
+    
+    //vuelvo a tener el false para usar el boton
+    state = state.copyWith(isPosting: false);
   }
 
   //se ejcuta cuando se ejecuta la funcion onFormSubmit
@@ -56,10 +62,11 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
 
     //sobreescribo el statre
     state = state.copyWith(
-        isFormPosted: true,
-        email: email,
-        password: password,
-        isValid: Formz.validate([email, password]));
+      isFormPosted: true,
+      email: email,
+      password: password,
+      isValid: Formz.validate([ email, password ]),
+    );
   }
 }
 
@@ -87,14 +94,13 @@ class LoginFormState {
     bool? isValid,
     Email? email,
     Password? password,
-  }) =>
-      LoginFormState(
-        isPosting: isPosting ?? this.isPosting,
-        isFormPosted: isFormPosted ?? this.isFormPosted,
-        isValid: isValid ?? this.isValid,
-        email: email ?? this.email,
-        password: password ?? this.password,
-      );
+  }) => LoginFormState(
+    isPosting: isPosting ?? this.isPosting,
+    isFormPosted: isFormPosted ?? this.isFormPosted,
+    isValid: isValid ?? this.isValid,
+    email: email ?? this.email,
+    password: password ?? this.password,
+  );
 
   //para poder imprimir en consola
   @override

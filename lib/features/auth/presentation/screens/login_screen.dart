@@ -82,6 +82,7 @@ class _LoginForm extends ConsumerWidget {
           CustomTextFormField(
             label: 'Correo',
             keyboardType: TextInputType.emailAddress,
+
             //cuando cambiar el input le mando la referencia al provider
             onChanged: ref.read(loginFormProvider.notifier).onEmailChange,
             errorMessage:
@@ -97,15 +98,16 @@ class _LoginForm extends ConsumerWidget {
           ),
           const SizedBox(height: 30),
           SizedBox(
-              width: double.infinity,
-              height: 60,
-              child: CustomFilledButton(
+            width: double.infinity,
+            height: 60,
+            child: CustomFilledButton(
                 text: 'Ingresar',
                 buttonColor: Colors.black,
-                onPressed: () {
-                  ref.read(loginFormProvider.notifier).onFormSubmit();
-                },
-              )),
+                //bloqueo el boton para hacer peticiones
+                onPressed: loginForm.isPosting
+                    ? null
+                    : ref.read(loginFormProvider.notifier).onFormSubmit),
+          ),
           const Spacer(flex: 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
